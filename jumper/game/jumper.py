@@ -62,5 +62,5 @@ class Jumper:
         Args:
             self (Jumper): an instance of Jumper.
         """
-        blanks = 
+        blanks = "_"
         self._blanks.append(blanks)
