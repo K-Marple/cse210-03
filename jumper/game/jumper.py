@@ -17,7 +17,7 @@ class Jumper:
             self (Jumper): an instance of Jumper.
         """
         self._word = ""
-        self._blanks = []
+        self._letters = ""
 
     def get_lives_left(self):
         """Gets a response for the player. Whether letter was correct or not.
@@ -28,22 +28,58 @@ class Jumper:
         Returns:
             string: a reponse for the player.
         """
-        lives = "(^.^) Getting ready."
-        full_lives = """/`~~~~~~~~`\ 
+        lives = ""
+        if self._letter in self._word:
+            lives = 5
+        elif self._letter not in self._word:
+            lives -= 1
+        
+        if lives == 6:
+            print("""
+        /`~~~~~~~~`\ 
         \_,_,_,_,_,/ 
          \        / 
           \      / 
            |    | 
         \ ( ^.^ ) / 
             )  ) 
-            /  \ """
-        word_list = ["chemistry", "song", "friendship", "science", "volume", "gate", "literature",
-            "philosophy", "construction", "area", "difficulty", "vehicle", "chest", "aspect", 
-            "percentage", "agency", "grocery", "girlfriend", "hair", "basket", "length", "equipment", 
-            "camera", "wedding", "party"]
-        word = random(word_list)
-        self._word = word.split()
-
+            /  \ """)
+        elif lives == 4:
+            print("""
+        \_,_,_,_,_,/
+         \        /
+          \      /
+           |    |
+        \ (‘’*.*`) /
+            )  )
+            /  \ """)
+        elif lives == 3:
+            print("""  
+         \        /
+          \      /
+           |    |
+        \ (‘*.*``) /
+            )  )
+            /  \ """)
+        elif lives == 2:
+            print("""
+          \      /
+           |    |
+        \ (``>.< ) /
+           )  )
+           /  \ """)
+        elif lives == 1:
+            print("""
+           |    |
+        \ (`O_O ) /
+            )  )
+            /  \ """)
+        elif lives == 0:
+            print("""
+        ( x_x )
+        / )  ) \ 
+          /  \ """)
+        
 
     def is_guessed(self):
         """Whether or not the word is correctly guessed.
@@ -54,13 +90,21 @@ class Jumper:
         Returns:
             boolean: True if the word is guessed; False if not.
         """
-        return (self._word == letters)
+        return (self._word == self._letters)
 
-    def watch_chute(self):
-        """Watches the parachute be keeping track of how long it is.
+    def watch_secret_word(self, letter):
+        """Watches the hidden word be keeping track of letters and blanks in it.
         
         Args:
             self (Jumper): an instance of Jumper.
         """
-        blanks = "_"
-        self._blanks.append(blanks)
+        word_list = ["chemistry", "song", "friendship", "science", "volume", "gate", "literature",
+            "philosophy", "construction", "area", "difficulty", "vehicle", "chest", "aspect", 
+            "percentage", "agency", "grocery", "girlfriend", "hair", "basket", "length", "equipment", 
+            "camera", "wedding", "party"]
+        self._word = random.choice(word_list)
+        for self._letter in list(self._word):
+            if self._letter in letter:
+                print(self._letter, end="")
+            else:
+                print(" _ ", end="")

@@ -1,6 +1,6 @@
-from terminal_service import TerminalService
-from player import Player
-from jumper import Jumper
+from game.terminal_service import TerminalService
+from game.player import Player
+from game.jumper import Jumper
 
 class Director:
     """A person who directs the game. They control the different parts of the game.
@@ -49,7 +49,7 @@ class Director:
         Args:
             self (Director): an instance of Director.
         """
-        self._jumper.watch_chute(self._player)
+        self._jumper.watch_secret_word(self._player)
 
     def _do_outputs(self):
         """Adds guessed letter to word or clears a part of the chute.
