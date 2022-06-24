@@ -16,10 +16,10 @@ class Jumper:
         Args:
             self (Jumper): an instance of Jumper.
         """
-        self._word = random.randint(word_list)
-        self._parachute = "pass"
+        self._word = ""
+        self._blanks = []
 
-    def get_response(self):
+    def get_lives_left(self):
         """Gets a response for the player. Whether letter was correct or not.
         
         Args:
@@ -28,8 +28,22 @@ class Jumper:
         Returns:
             string: a reponse for the player.
         """
-        reponse = "(^.^) Getting ready."
-        pass
+        lives = "(^.^) Getting ready."
+        full_lives = """/`~~~~~~~~`\ 
+        \_,_,_,_,_,/ 
+         \        / 
+          \      / 
+           |    | 
+        \ ( ^.^ ) / 
+            )  ) 
+            /  \ """
+        word_list = ["chemistry", "song", "friendship", "science", "volume", "gate", "literature",
+            "philosophy", "construction", "area", "difficulty", "vehicle", "chest", "aspect", 
+            "percentage", "agency", "grocery", "girlfriend", "hair", "basket", "length", "equipment", 
+            "camera", "wedding", "party"]
+        word = random(word_list)
+        self._word = word.split()
+
 
     def is_guessed(self):
         """Whether or not the word is correctly guessed.
@@ -48,4 +62,5 @@ class Jumper:
         Args:
             self (Jumper): an instance of Jumper.
         """
-        pass
+        blanks = 
+        self._blanks.append(blanks)

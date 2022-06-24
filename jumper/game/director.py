@@ -40,7 +40,8 @@ class Director:
         Args:
             self (Director): an instance of Director.
         """
-        pass
+        new_guess = self._terminal_service.read_letter("\nGuess a letter (a-z): ")
+        self._player.add_letters(new_guess)
 
     def _do_updates(self):
         """Keeps track of guessed letter.
@@ -48,7 +49,7 @@ class Director:
         Args:
             self (Director): an instance of Director.
         """
-        pass
+        self._jumper.watch_chute(self._player)
 
     def _do_outputs(self):
         """Adds guessed letter to word or clears a part of the chute.
@@ -56,4 +57,7 @@ class Director:
         Args:
             self (Director): an instance of Director.
         """
-        pass
+        lives = self._jumper.get_lives_left()
+        self._terminal_service.write_text(lives)
+        if self._jumper.is_guessed():
+            self._continue_playing = False
