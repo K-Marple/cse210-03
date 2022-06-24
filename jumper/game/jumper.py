@@ -28,14 +28,14 @@ class Jumper:
         Returns:
             string: a reponse for the player.
         """
-        lives = ""
-        if self._letter in self._word:
-            lives = 5
-        elif self._letter not in self._word:
+        lives = 5
+        if self._letters in self._word:
+            lives = lives
+        elif self._letters not in self._word:
             lives -= 1
         
-        if lives == 6:
-            print("""
+        if lives == 5:
+            return """
         /`~~~~~~~~`\ 
         \_,_,_,_,_,/ 
          \        / 
@@ -43,43 +43,42 @@ class Jumper:
            |    | 
         \ ( ^.^ ) / 
             )  ) 
-            /  \ """)
+            /  \ """
         elif lives == 4:
-            print("""
+            return """
         \_,_,_,_,_,/
          \        /
           \      /
            |    |
         \ (‘’*.*`) /
             )  )
-            /  \ """)
+            /  \ """
         elif lives == 3:
-            print("""  
+            return """  
          \        /
           \      /
            |    |
         \ (‘*.*``) /
             )  )
-            /  \ """)
+            /  \ """
         elif lives == 2:
-            print("""
+            return """
           \      /
            |    |
         \ (``>.< ) /
            )  )
-           /  \ """)
+           /  \ """
         elif lives == 1:
-            print("""
+            return """
            |    |
         \ (`O_O ) /
             )  )
-            /  \ """)
+            /  \ """
         elif lives == 0:
-            print("""
+            return """
         ( x_x )
         / )  ) \ 
-          /  \ """)
-        
+          /  \ """
 
     def is_guessed(self):
         """Whether or not the word is correctly guessed.
@@ -98,11 +97,6 @@ class Jumper:
         Args:
             self (Jumper): an instance of Jumper.
         """
-        word_list = ["chemistry", "song", "friendship", "science", "volume", "gate", "literature",
-            "philosophy", "construction", "area", "difficulty", "vehicle", "chest", "aspect", 
-            "percentage", "agency", "grocery", "girlfriend", "hair", "basket", "length", "equipment", 
-            "camera", "wedding", "party"]
-        self._word = random.choice(word_list)
         for self._letter in list(self._word):
             if self._letter in letter:
                 print(self._letter, end="")

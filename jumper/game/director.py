@@ -1,6 +1,7 @@
 from game.terminal_service import TerminalService
 from game.player import Player
 from game.jumper import Jumper
+import random
 
 class Director:
     """A person who directs the game. They control the different parts of the game.
@@ -22,6 +23,7 @@ class Director:
         self._continue_playing = True
         self._jumper = Jumper()
         self._terminal_service = TerminalService()
+        self._guess = ""
 
     def start_game(self):
         """Starts the game by running the main game loop.
@@ -40,8 +42,18 @@ class Director:
         Args:
             self (Director): an instance of Director.
         """
-        new_guess = self._terminal_service.read_letter("\nGuess a letter (a-z): ")
-        self._player.add_letters(new_guess)
+        word_list = ["chemistry", "song", "friendship", "science", "volume", "gate", "literature",
+            "philosophy", "construction", "area", "difficulty", "vehicle", "chest", "aspect", 
+            "percentage", "agency", "grocery", "girlfriend", "hair", "basket", "length", "equipment", 
+            "camera", "wedding", "party"]
+        self._word = random.choice(word_list)
+        for self._letter in list(self._word):
+            if self._letter in self._guess:
+                print(self._letter, end="")
+            else:
+                print(" _ ", end="")
+        self._guess = self._terminal_service.read_letter("\nGuess a letter (a-z): ")
+        self._player.add_letters(self._guess)
 
     def _do_updates(self):
         """Keeps track of guessed letter.

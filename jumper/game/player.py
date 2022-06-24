@@ -33,4 +33,4 @@ class Player:
             self (Player): an instance of Player.
             letter (string): the given letter.
         """
-        self._letters = letter
+        self._letters.append(letter)
