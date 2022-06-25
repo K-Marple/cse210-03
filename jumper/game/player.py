@@ -16,7 +16,7 @@ class Player:
         Args:
             self (Player): an instance of Player.
         """
-        self._letters = ""
+        self._letter = ""
 
     def get_letters(self):
         """Gets the current letters of the word.
@@ -24,7 +24,7 @@ class Player:
         Returns:
             string: the known letters.
         """
-        return self._letters
+        return self._letter
 
     def add_letters(self, letter):
         """Adds a letter to the guess word.
@@ -33,4 +33,4 @@ class Player:
             self (Player): an instance of Player.
             letter (string): the given letter.
         """
-        self._letters.append(letter)
+        self._letter = letter

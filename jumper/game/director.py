@@ -23,7 +23,7 @@ class Director:
         self._continue_playing = True
         self._jumper = Jumper()
         self._terminal_service = TerminalService()
-        self._guess = ""
+        self._guess = []
 
     def start_game(self):
         """Starts the game by running the main game loop.
@@ -31,6 +31,13 @@ class Director:
         Args:
             self (Director): an instance of Director.
         """
+        # word_list = ["chemistry", "song", "friendship", "science", "volume", "gate", "literature",
+        #     "philosophy", "construction", "area", "difficulty", "vehicle", "chest", "aspect", 
+        #     "percentage", "agency", "grocery", "girlfriend", "hair", "basket", "length", "equipment", 
+        #     "camera", "wedding", "party"]
+        # self._word = random.choice(word_list)
+        # for self._letter in list(self._word):
+            # print(" _ ", end="")
         while self._continue_playing:
             self._get_inputs()
             self._do_updates()
@@ -42,18 +49,10 @@ class Director:
         Args:
             self (Director): an instance of Director.
         """
-        word_list = ["chemistry", "song", "friendship", "science", "volume", "gate", "literature",
-            "philosophy", "construction", "area", "difficulty", "vehicle", "chest", "aspect", 
-            "percentage", "agency", "grocery", "girlfriend", "hair", "basket", "length", "equipment", 
-            "camera", "wedding", "party"]
-        self._word = random.choice(word_list)
-        for self._letter in list(self._word):
-            if self._letter in self._guess:
-                print(self._letter, end="")
-            else:
-                print(" _ ", end="")
+        self._terminal_service.write_text(self._jumper.watch_word(self._player))
         self._guess = self._terminal_service.read_letter("\nGuess a letter (a-z): ")
         self._player.add_letters(self._guess)
+        
 
     def _do_updates(self):
         """Keeps track of guessed letter.
@@ -61,7 +60,14 @@ class Director:
         Args:
             self (Director): an instance of Director.
         """
-        self._jumper.watch_secret_word(self._player)
+        self._jumper.watch_word(self._player)
+        # for self._letter in self._word:
+        #     self._word.append("_")
+        #     print(self._word)
+        #     # if self._guess in self._word:
+        #     #     print(self._guess, end="")
+        #     # else:
+        #     #     print(" _ ", end="")
 
     def _do_outputs(self):
         """Adds guessed letter to word or clears a part of the chute.
