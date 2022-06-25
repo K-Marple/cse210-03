@@ -39,8 +39,11 @@ class Director:
         # for self._letter in list(self._word):
             # print(" _ ", end="")
         while self._continue_playing:
+            print()
             self._get_inputs()
+            print()
             self._do_updates()
+            print()
             self._do_outputs()
 
     def _get_inputs(self):
@@ -60,7 +63,7 @@ class Director:
         Args:
             self (Director): an instance of Director.
         """
-        self._jumper.watch_word(self._player)
+        self._terminal_service.write_text(self._jumper.watch_word(self._player))
         # for self._letter in self._word:
         #     self._word.append("_")
         #     print(self._word)

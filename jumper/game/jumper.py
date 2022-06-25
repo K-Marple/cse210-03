@@ -109,5 +109,4 @@ class Jumper:
             else:
                 word = " _ "
             print(word, end="")
-            self._guessed += word
-        return  self._guessed
+        return(self._guessed + word)
