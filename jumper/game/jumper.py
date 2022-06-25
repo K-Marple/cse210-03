@@ -22,7 +22,7 @@ class Jumper:
             "camera", "wedding", "party"]
         self._word = random.choice(word_list)
         self._letter = ""
-        self._guessed = ""
+        self._guessed = []
         self._lives = 0
 
     def get_lives_left(self):
@@ -105,8 +105,7 @@ class Jumper:
         """
         for self._letter in list(self._word):
             if self._letter in player.get_letters():
-                word = self._letter
+                self._guessed = self._letter
             else:
-                word = " _ "
-            print(word, end="")
-        return(self._guessed + word)
+                self._guessed = " _ "
+            print(self._guessed, end="")

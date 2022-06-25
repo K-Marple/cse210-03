@@ -52,7 +52,7 @@ class Director:
         Args:
             self (Director): an instance of Director.
         """
-        self._terminal_service.write_text(self._jumper.watch_word(self._player))
+        self._jumper.watch_word(self._player)
         self._guess = self._terminal_service.read_letter("\nGuess a letter (a-z): ")
         self._player.add_letters(self._guess)
         
@@ -63,7 +63,7 @@ class Director:
         Args:
             self (Director): an instance of Director.
         """
-        self._terminal_service.write_text(self._jumper.watch_word(self._player))
+        self._jumper.watch_word(self._player)
         # for self._letter in self._word:
         #     self._word.append("_")
         #     print(self._word)
