@@ -16,7 +16,7 @@ class Player:
         Args:
             self (Player): an instance of Player.
         """
-        self._letter = ""
+        self._letter = []
 
     def get_letters(self):
         """Gets the current letters of the word.
@@ -33,4 +33,4 @@ class Player:
             self (Player): an instance of Player.
             letter (string): the given letter.
         """
-        self._letter = letter
+        self._letter += letter

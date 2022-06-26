@@ -22,10 +22,10 @@ class Jumper:
             "camera", "wedding", "party"]
         self._word = random.choice(word_list)
         self._letter = ""
-        self._guessed = []
+        self._guessed = " _ " * len(self._word)
         self._lives = 0
 
-    def get_lives_left(self):
+    def get_lives_left(self, guess):
         """Gets a response for the player. Whether letter was correct or not.
         
         Args:
@@ -34,9 +34,9 @@ class Jumper:
         Returns:
             string: a reponse for the player.
         """
-        if self._letter in self._word:
-            self._lives = 0
-        elif self._letter not in self._word:
+        if guess in self._word:
+            self._lives += 0
+        elif guess not in self._word:
             self._lives += 1
         
         if self._lives == 0:
@@ -85,7 +85,7 @@ class Jumper:
         / )  ) \ 
           /  \ """
 
-    def is_guessed(self):
+    def is_guessed(self, player):
         """Whether or not the word is correctly guessed.
         
         Args:
@@ -94,7 +94,15 @@ class Jumper:
         Returns:
             boolean: True if the word is guessed; False if not.
         """
-        return (self._word == self._letter)
+        count = 0
+        for self._letter in player.get_letters():
+            if self._letter in self._word:
+                count += 1
+        
+        if self._lives == 5:
+            return True
+        elif count == len(self._word):
+            return True
 
     def watch_word(self, player):
         """Watches the hidden word, keeping track of letters and blanks.
